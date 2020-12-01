@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map info</title>
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="libs/css/styleMaps.css">
+</head>
+<body>
+    <nav>
+        <select id="select">
+            <option value="">select country</option>
+            
+        </select>
+    </nav>
+    
+    <div id="map">
+
+    </div>
+    <div class="overlay hidden" id="overlay">
+        <nav>
+            <button id="close">X</button>
+            <br>
+            <button id="countryButton">Country</button>
+            <button id="localButton">local</button>
+            <button id="weatherButton">Weather</button>
+            <button id="wikiButton">WikiLinks</button>
+            
+            
+        </nav>
+        <div id="infomation">
+            <div id="info" class="info"></div>
+            <div id="weather" class="info hidden"></div>
+            <div id="wiki" class="info hidden"></div>
+            <span id="country" class="info hidden"></span>
+            <div id="local" class="info hidden"></div>
+        </div>
+        
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="borders/countryBorders.geo.js"></script>
+    <script type="application/javascript" src="libs/js/jquery-2.2.3.min.js"></script>
+	<script type="application/javascript" src="libs/js/info.js"></script>
+    <script type="application/javascript" src="libs/js/map.js"></script>
+    <script type="application/javascript" src="libs/js/infoRetrieval.js"></script>
+    <script type="application/javascript" src="libs/js/buttons.js"></script>
+    
+
+</body>
+</html>

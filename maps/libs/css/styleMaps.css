@@ -1,0 +1,50 @@
+html, body{
+    height:98vh;
+    width:100vw;
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+#map{
+    width:98vw;
+    height:100vh;
+    overflow: hidden;
+}
+
+#overlay{
+    height:400px;
+    width:300px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(233, 233, 154, 0.43);
+    border-radius: 20px;
+    z-index: 999;
+    
+}
+
+.hidden{
+    display:none;
+}
+
+img{
+    height:30px;
+    width:50px;
+}
+
+.info {
+    
+    height: 100%;
+    width:100%;
+    
+    
+}
+
+#information{
+    
+    height:100%;
+    width: 100%;
+}
+
