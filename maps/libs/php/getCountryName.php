@@ -2,7 +2,7 @@
 
 	$executionStartTime = microtime(true) / 1000;
 
-    $url='http://api.weatherapi.com/v1/current.json?key=6c98f55208b1408ea0d155919202911&q='. $_REQUEST['lat'] . ',' . $_REQUEST['lng'];
+    $url='http://api.geonames.org/countryCode?lat=' . $_REQUEST['lat'] .'&lng=' . $_REQUEST['lng'] . '&username=Lewis_swales'. '&type=JSON';
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -16,7 +16,7 @@
 	$decode = json_decode($result,true);	
 
 	$output['status']['code'] = "200";
-	$output['status']['name'] = "weatherInfo";
+	$output['status']['name'] = "country Code";
 	$output['status']['description'] = "mission saved";
 	$output['status']['returnedIn'] = (microtime(true) - $executionStartTime) / 1000 . " ms";
 	$output['data'] = $decode;

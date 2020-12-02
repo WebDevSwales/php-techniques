@@ -18,7 +18,7 @@ function getCountryInfo(){
             
                 countryData = result;
                 countryDataRefresh();
-            
+
             $('.info').addClass("hidden");
             $('#country').removeClass("hidden");
 
@@ -36,7 +36,53 @@ function getCountryInfo(){
     })
 }
 
+function getweatherInfo(){
+    $.ajax({
+        url:"libs/php/getweatherinfo.php",
+        type: "GET",
+        dataType: 'json',
+        data:{
+            lat: lat,
+            lng: lng
+        },
 
+        success: function(result){
+            console.log("%cweatherData() ", "color: red");
+            console.log(result);
+            weatherData = result['data'];
+            weatherDataRefresh();
+            getlocalInfo();   
+        },
+
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+        }
+
+    })
+}
+
+function getlocalInfo(){
+    $.ajax({
+        url:"libs/php/getlocaldata.php",
+        type: "GET",
+        dataType: 'json',
+        data:{
+            town: `${weatherData.location.name}`
+        },
+
+        success: function(result){
+            console.log("%clocalData() ", "color: red");
+            console.log(result);
+            localData = result;
+             
+        },
+
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+        }
+
+    })
+}
 
 function countryDataRefresh(){
 
@@ -44,7 +90,8 @@ if(countryData[1] == undefined || countryData[1] != "United States of America"){
     $('#country').html(`
                     <p><b>lattitude:</b> ${lat.toFixed(5)}<br>
                     <b>longitude:</b>${lng.toFixed(5)}</p>
-                    <p><b> You have selected</b>: ${countryName} </p><br>
+                    <p><b> You have selected</b>: ${countryName} </p>
+                    <p><b> Nearest town to click:</b> ${weatherData.location.name}</p>
                     <p> ${countryName} has a population of ${countryData[0]['population']} and the total area of ${countryName} is ${countryData[0]['area']}km<sup>2</sup>which means icelands population density is about ${(countryData[0]['population']/countryData[0]['area']).toFixed(0)} People per km<sup>2</sup>.<br>
                     The ${countryData[0]['languages'].length < 2 ? `language of ${countryName} is ` : `languages of ${countryName} are `}<span id="languages"></span> and they use the ${countryData[0]['currencies'][0]['name']}(${countryData[0]['currencies'][0]['symbol']}) as their main currency.
 
@@ -87,3 +134,20 @@ function wikiDataRefresh(){
     });
 }
     
+function weatherDataRefresh(){
+    var icon = weatherData['current']['condition']['icon'].replace('//','');
+    
+    $('#weather').html(`
+    <h3> Current Weather:<br> ${weatherData['location']['name']}</h3>
+    <p>weather condition:<br> ${weatherData.current.condition.text}<br><img src="http:${icon}"></p>
+    <p>Wind:<br>
+    Speed: ${weatherData.current.gust_kph}kph Direction:${weatherData.current.wind_dir}</p>
+    <p>Temp:<br>
+     ${weatherData.current.temp_c} &deg;C but feels like: ${weatherData.current.feelslike_c}&deg;C</p>
+     <p> Humidity: <br>
+     ${weatherData.current.humidity}%</p>
+     <br>
+     <br>
+     <p>Last Updated: ${weatherData.current.last_updated}</p>
+    `);
+}

@@ -2,7 +2,8 @@
 
 	$executionStartTime = microtime(true) / 1000;
 
-    $url='http://api.geonames.org/findNearbyPlaceNameJSON?cities=cities1000&lat=' . $_REQUEST['lat'] .'&lng=' . $_REQUEST['lng'] . '&username=Lewis_swales'. '&type=JSON';
+	$url='http://api.geonames.org/searchJSON?q=' . $_REQUEST['town'] . '&maxRows=1&username=lewis_swales';
+	 
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -19,10 +20,12 @@
 	$output['status']['name'] = "localInfo";
 	$output['status']['description'] = "mission saved";
 	$output['status']['returnedIn'] = (microtime(true) - $executionStartTime) / 1000 . " ms";
-	$output['data'] = $decode['geonames'];
+	$output['data'] = $decode['geonames'][0];
 	
 	header('Content-Type: application/json; charset=UTF-8');
 
 	echo json_encode($output); 
+
+	
 
 ?>

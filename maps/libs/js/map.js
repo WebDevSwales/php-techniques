@@ -1,4 +1,4 @@
-//key information for api requests
+//key information for/from api requests
 var lat;
 var lng;
 var countryCode;
@@ -46,7 +46,8 @@ map.on('click', debounce(function(e){
     map.setView([lat,lng],5)
     console.log("You clicked the map at latitude: " + lat + " and longitude: " + lng);
     basicCountryData();  
-    getwikiData();      
+    
+          
 },250));
         
         
@@ -86,6 +87,8 @@ function basicCountryData(){
             $('.overlay').removeClass("hidden");
             if(countryName != undefined){
                 getCountryInfo();
+                getwikiData();
+                getweatherInfo();
                 
             }
             $('.info').addClass("hidden");
@@ -124,8 +127,7 @@ function getwikiData(){
             wikiData = result;
             //storing data into variables for use by other apis
             //revealing modal overlay
-            $('.overlay').removeClass("hidden");
-            $('.info').addClass("hidden");
+            
             
             wikiDataRefresh();
             //if we done get a country returned we can prompt people to try again. 
