@@ -10,29 +10,23 @@
     <link rel="stylesheet" href="libs/css/styleMaps.css">
 </head>
 <body>
-    <nav>
-        <select id="select">
-            <option value="">select country</option>
-            
-        </select>
-    </nav>
-    
     <div id="map">
 
     </div>
     <div class="overlay hidden" id="overlay">
         <nav>
+            
             <button id="close">X</button>
             <br>
+            <h1>Fact Sheet</h1><br>
             <button id="countryButton">Country</button>
             <button id="localButton">local</button>
             <button id="weatherButton">Weather</button>
-            <button id="wikiButton">WikiLinks</button>
+            <button id="wikiButton">ClickiLinks</button>
             
             
         </nav>
-        <div id="infomation">
-            <div id="info" class="info"></div>
+        <div id="information">
             <div id="weather" class="info hidden"></div>
             <div id="wiki" class="info hidden"></div>
             <span id="country" class="info hidden"></span>
@@ -40,14 +34,20 @@
         </div>
         
     </div>
+    <div id="mapSelect">
+        <div id="atlas" class="bubble"></div>
+        <div id="mobile-atlas" class="bubble"></div>
+        <div id="outdoors" class="bubble"></div>
+    </div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="borders/countryBorders.geo.js"></script>
     <script type="application/javascript" src="libs/js/jquery-2.2.3.min.js"></script>
-	<script type="application/javascript" src="libs/js/info.js"></script>
     <script type="application/javascript" src="libs/js/map.js"></script>
-    <script type="application/javascript" src="libs/js/infoRetrieval.js"></script>
+    <script type="application/javascript" src="libs/js/info.js"></script>
     <script type="application/javascript" src="libs/js/buttons.js"></script>
+    <script type="application/javascript" src="libs/js/infoRetrieval.js"></script>
+    
     
 
 </body>
